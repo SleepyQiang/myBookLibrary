@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/CCzzJ/AndroidStudioProjects/myBookshop/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.135" />
+        <entry key="..\:/Users/CCzzJ/AndroidStudioProjects/myBookshop/app/src/main/res/drawable/ic_launcher_background.xml" value="0.135" />
         <entry key="..\:/Users/CCzzJ/AndroidStudioProjects/myBookshop/app/src/main/res/layout/activity_input_book_list.xml" value="0.2246376811594203" />
         <entry key="..\:/Users/CCzzJ/AndroidStudioProjects/myBookshop/app/src/main/res/layout/activity_main.xml" value="0.2246376811594203" />
         <entry key="..\:/Users/CCzzJ/AndroidStudioProjects/myBookshop/app/src/main/res/layout/book_list.xml" value="0.16939890710382513" />

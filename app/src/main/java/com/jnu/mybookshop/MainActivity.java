@@ -15,9 +15,11 @@ import android.view.ContextMenu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.jnu.mybookshop.data.Book;
 import com.jnu.mybookshop.data.DataSaver;
 
@@ -84,6 +86,16 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView.setAdapter(mMyAdapter);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(layoutManager);
+
+        FloatingActionButton fab = findViewById(R.id.floatingActionButton);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, InputBookListActivity.class);
+                intent.putExtra("position",0);
+                addDataLauncher.launch(intent);
+            }
+        });
     }
     public List<Book> getListBooks(){
         return mBookList;
