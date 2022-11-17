@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">myBookshop</string>
+    <string name="confirmation">confirmation</string>
+    <string name="sure_to_delete">Are you sure to delete?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="name">Name</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="booklist">BookList</string>
+</resources>
