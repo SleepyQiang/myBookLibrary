@@ -6,5 +6,6 @@
     <string name="no">No</string>
     <string name="name">Name</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="booklist">BookList</string>
+    <string name="book_list">BookList</string>
+    <string name="welcome_to_drawer">Welcome to drawer</string>
 </resources>
