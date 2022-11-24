@@ -36,6 +36,8 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    private CardView myIdentityCard;
+
     RecyclerView mRecyclerView;
     private MyAdapter mMyAdapter;
 
@@ -69,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
                 Bundle bundle = intent.getExtras();
                 String name = bundle.getString("name");
                 int position = bundle.getInt("position");
-                mBookList.add(position, new Book(name, R.drawable.book_1));
+                mBookList.add(position, new Book(name, R.drawable.book_no_name));
                 new DataSaver().Save(this, mBookList);
                 mMyAdapter.notifyItemInserted(position);
             }
@@ -95,19 +97,27 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        myIdentityCard = findViewById(R.id.my_identity_card);
+        myIdentityCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                myDrawerLayout.openDrawer(myLinearLayout);
+            }
+        });
+
         mRecyclerView = this.findViewById(R.id.recyclerview);
 
-        MaterialToolbar toolbar = findViewById(R.id.materialToolbar);
+        /*MaterialToolbar toolbar = findViewById(R.id.materialToolbar);
         setSupportActionBar(toolbar);
         ActionBar supportActionBar = getSupportActionBar();
         supportActionBar.setHomeButtonEnabled(true);
         supportActionBar.setDisplayHomeAsUpEnabled(true);
-        supportActionBar.setHomeAsUpIndicator(R.drawable.ic_baseline_menu_24);
+        supportActionBar.setHomeAsUpIndicator(R.drawable.ic_baseline_menu_24);*/
 
         myDrawerLayout = findViewById(R.id.drawer_main);
         myDrawerText = findViewById(R.id.drawer_text);
         myLinearLayout = findViewById(R.id.drawer_left);
-
         myDrawerLayout.addDrawerListener(new DrawerLayout.DrawerListener() {
             @Override
             public void onDrawerSlide(@NonNull View drawerView, float slideOffset) {
@@ -162,9 +172,9 @@ public class MainActivity extends AppCompatActivity {
         Drawable myDrawable = getDrawable(R.drawable.ic_baseline_add_24);
         myFab.setImageDrawable(myDrawable);
 
-        Book b0 = new Book("软件项目管理案例教程（第4版）", R.drawable.book_2);
-        Book b1 = new Book("创新工程实践", R.drawable.book_no_name);
-        Book b2 = new Book("信息安全数学基础（第2版）", R.drawable.book_1);
+        Book b0 = new Book("三体", R.drawable.threebody1);
+        Book b1 = new Book("三体Ⅱ", R.drawable.threebody2);
+        Book b2 = new Book("三体Ⅲ", R.drawable.threebody3);
 
         /*spinner = findViewById(R.id.spinner);
         spinner_list = new ArrayList<String>();
@@ -227,7 +237,6 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                myDrawerLayout.openDrawer(myLinearLayout);
                 break;
             case R.id.app_bar_search:
                 Toast.makeText(MainActivity.this, "You choose " +item.toString(), Toast.LENGTH_SHORT).show();
