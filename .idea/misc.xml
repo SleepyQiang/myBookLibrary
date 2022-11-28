@@ -11,14 +11,18 @@
         <entry key="..\:/Users/CCzzJ/AndroidStudioProjects/myBookshop/app/src/main/res/drawable/ic_baseline_menu_book_24.xml" value="0.135" />
         <entry key="..\:/Users/CCzzJ/AndroidStudioProjects/myBookshop/app/src/main/res/drawable/ic_baseline_perm_identity_24.xml" value="0.1525" />
         <entry key="..\:/Users/CCzzJ/AndroidStudioProjects/myBookshop/app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.1535" />
+        <entry key="..\:/Users/CCzzJ/AndroidStudioProjects/myBookshop/app/src/main/res/drawable/ic_baseline_star_24.xml" value="0.198" />
         <entry key="..\:/Users/CCzzJ/AndroidStudioProjects/myBookshop/app/src/main/res/drawable/ic_launcher_background.xml" value="0.135" />
+        <entry key="..\:/Users/CCzzJ/AndroidStudioProjects/myBookshop/app/src/main/res/drawable/mydialog_background.xml" value="0.198" />
         <entry key="..\:/Users/CCzzJ/AndroidStudioProjects/myBookshop/app/src/main/res/layout/activity_input_book_list.xml" value="0.2246376811594203" />
         <entry key="..\:/Users/CCzzJ/AndroidStudioProjects/myBookshop/app/src/main/res/layout/activity_main.xml" value="0.22" />
-        <entry key="..\:/Users/CCzzJ/AndroidStudioProjects/myBookshop/app/src/main/res/layout/book_list.xml" value="0.1" />
+        <entry key="..\:/Users/CCzzJ/AndroidStudioProjects/myBookshop/app/src/main/res/layout/book_info_dialog.xml" value="0.2947916666666667" />
+        <entry key="..\:/Users/CCzzJ/AndroidStudioProjects/myBookshop/app/src/main/res/layout/book_list.xml" value="0.4466666666666667" />
         <entry key="..\:/Users/CCzzJ/AndroidStudioProjects/myBookshop/app/src/main/res/layout/book_list_1.xml" value="0.19293478260869565" />
         <entry key="..\:/Users/CCzzJ/AndroidStudioProjects/myBookshop/app/src/main/res/layout/book_list_constraint.xml" value="0.19293478260869565" />
         <entry key="..\:/Users/CCzzJ/AndroidStudioProjects/myBookshop/app/src/main/res/layout/fragment_one.xml" value="0.2513586956521739" />
         <entry key="..\:/Users/CCzzJ/AndroidStudioProjects/myBookshop/app/src/main/res/layout/fragment_two.xml" value="0.2513586956521739" />
+        <entry key="..\:/Users/CCzzJ/AndroidStudioProjects/myBookshop/app/src/main/res/layout/ny_dialog_background.xml" value="0.18931159420289856" />
         <entry key="..\:/Users/CCzzJ/AndroidStudioProjects/myBookshop/app/src/main/res/layout/spinner_drop_down_white.xml" value="0.2513586956521739" />
         <entry key="..\:/Users/CCzzJ/AndroidStudioProjects/myBookshop/app/src/main/res/layout/spinner_item_white.xml" value="0.2513586956521739" />
         <entry key="..\:/Users/CCzzJ/AndroidStudioProjects/myBookshop/app/src/main/res/menu/menu_main.xml" value="0.29583333333333334" />

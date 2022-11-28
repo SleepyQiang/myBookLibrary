@@ -3,7 +3,6 @@ package com.jnu.mybookshop;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
@@ -25,11 +24,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 import com.jnu.mybookshop.data.Book;
 import com.jnu.mybookshop.data.DataSaver;
+import com.jnu.mybookshop.dialog.MyDialog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -71,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
                 Bundle bundle = intent.getExtras();
                 String name = bundle.getString("name");
                 int position = bundle.getInt("position");
-                mBookList.add(position, new Book(name, R.drawable.book_no_name));
+                mBookList.add(position, new Book(name, R.drawable.day_night, "[日] 东野圭吾", "南海出版公司", "2013-1-1", "9.2", "9787544258609"));
                 new DataSaver().Save(this, mBookList);
                 mMyAdapter.notifyItemInserted(position);
             }
@@ -172,9 +171,9 @@ public class MainActivity extends AppCompatActivity {
         Drawable myDrawable = getDrawable(R.drawable.ic_baseline_add_24);
         myFab.setImageDrawable(myDrawable);
 
-        Book b0 = new Book("三体", R.drawable.threebody1);
-        Book b1 = new Book("三体Ⅱ", R.drawable.threebody2);
-        Book b2 = new Book("三体Ⅲ", R.drawable.threebody3);
+        Book b0 = new Book("三体", R.drawable.threebody1, "刘慈欣", "重庆出版社", "2008-1", "8.9", "9787536692930");
+        Book b1 = new Book("三体Ⅱ", R.drawable.threebody2, "刘慈欣", "重庆出版社", "2008-5", "9.3", "9787536693968");
+        Book b2 = new Book("三体Ⅲ", R.drawable.threebody3, "刘慈欣", "重庆出版社", "2010-11", "9.2", "9787229030933");
 
         /*spinner = findViewById(R.id.spinner);
         spinner_list = new ArrayList<String>();
@@ -202,7 +201,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });*/
-
 
         DataSaver dataSaver = new DataSaver();
         mBookList = dataSaver.Load(this);
@@ -232,6 +230,12 @@ public class MainActivity extends AppCompatActivity {
     public List<Book> getListBooks() {
         return mBookList;
     }
+
+    public void showBookInfo(Book book){
+        MyDialog myDialog = new MyDialog(MainActivity.this, book);
+        myDialog.show();
+    }
+
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -306,8 +310,13 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
             Book book = mBookList.get(position);
-            holder.mImageView.setImageDrawable(getResources().getDrawable(book.coverresourceid));
-            holder.mTextView.setText(book.title);
+            holder.mImageView.setImageDrawable(getResources().getDrawable(book.getCoverResourceId()));
+            holder.mImageStar.setImageDrawable(getResources().getDrawable(R.drawable.ic_baseline_star_24));
+            holder.mTextRank.setText(book.getRank());
+            holder.mTextView.setText(book.getTitle());
+            holder.mTextAuthor.setText(book.getAuthor());
+            holder.mTextYear.setText(book.getYear());
+            holder.mCardView.setOnClickListener(view -> showBookInfo(book));
         }
 
         @Override
@@ -318,12 +327,22 @@ public class MainActivity extends AppCompatActivity {
 
     class MyViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener {
         ImageView mImageView;
+        ImageView mImageStar;
+        TextView mTextRank;
         TextView mTextView;
+        TextView mTextAuthor;
+        TextView mTextYear;
+        CardView mCardView;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             mImageView = itemView.findViewById(R.id.imageView);
             mTextView = itemView.findViewById(R.id.textView);
+            mCardView = itemView.findViewById(R.id.cardView);
+            mImageStar= itemView.findViewById(R.id.imageStar);
+            mTextRank = itemView.findViewById(R.id.textRank);
+            mTextAuthor = itemView.findViewById(R.id.textAuthor);
+            mTextYear = itemView.findViewById(R.id.textYear);
             itemView.setOnCreateContextMenuListener(this);
         }
 

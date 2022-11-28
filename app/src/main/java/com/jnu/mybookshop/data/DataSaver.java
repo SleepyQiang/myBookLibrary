@@ -22,9 +22,10 @@ public class DataSaver {
             e.printStackTrace();
         }
     }
+
     @NonNull
     public ArrayList<Book> Load(Context context){
-        ArrayList<Book> data=new ArrayList<>();
+        ArrayList<Book> data = new ArrayList<>();
         try {
             FileInputStream fileInputStream = context.openFileInput("myData.dat");
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
