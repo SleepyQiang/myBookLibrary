@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/cardView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
+    android:foreground="?android:attr/selectableItemBackground"
     app:cardBackgroundColor="@color/white"
     app:cardCornerRadius="8dp"
     app:cardElevation="8dp"
     app:cardMaxElevation="10dp"
     app:cardPreventCornerOverlap="true"
-    app:cardUseCompatPadding="true"
-    android:foreground="?android:attr/selectableItemBackground"
-    >
+    app:cardUseCompatPadding="true">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -24,51 +22,52 @@
             android:layout_width="141dp"
             android:layout_height="200dp" />
 
-        <ImageView
-            android:id="@+id/imageStar"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_toEndOf="@id/imageView"
-            android:layout_alignParentTop="true"
-            android:layout_margin="5dp"
-            />
-
-        <TextView
-            android:id="@+id/textRank"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:layout_marginTop="5dp"
-            android:gravity="center"
-            android:textSize="20dp"
-            android:textColor="#49ADD1"
-            android:layout_toEndOf="@id/imageStar" />
-
         <TextView
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/imageStar"
-            android:layout_margin="5dp"
-            android:textSize="18dp"
-            android:layout_toEndOf="@id/imageView" />
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_toEndOf="@id/imageView"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/textRank"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_toEndOf="@id/imageView"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/textAuthor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/textView"
+            android:layout_below="@id/textRank"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
             android:layout_toEndOf="@id/imageView"
-            android:layout_margin="5dp"
-            android:textSize="18dp"/>
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/textYear"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/textAuthor"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
             android:layout_toEndOf="@id/imageView"
-            android:layout_margin="5dp"
-            android:textSize="18dp"/>
+            android:textSize="18sp" />
 
 
     </RelativeLayout>

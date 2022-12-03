@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -37,125 +38,45 @@
             android:id="@+id/linear_top"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
             android:orientation="horizontal"
-            >
-            <!--<androidx.cardview.widget.CardView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="6">
-                <Image
-
-            </androidx.cardview.widget.CardView>-->
-            <androidx.appcompat.widget.SearchView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="6"/>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/my_identity_card"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                app:cardCornerRadius="100dp"
-                android:layout_weight="1.0"
-                android:foreground="?android:attr/selectableItemBackground"
-                >
-
-                <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:background="@drawable/my_identity"
-                    android:layout_gravity="center"
-                    />
-            </androidx.cardview.widget.CardView>
-
-
-
-        </LinearLayout>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerview"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintTop_toBottomOf="@id/linear_top"
-            app:layout_constraintBottom_toTopOf="@id/tabLayout" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/linear_top" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/floatingActionButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/tabLayout"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
             android:background="@color/yellow"
             android:clickable="true"
-            android:contentDescription="TODO" />
-
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tabLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:layout_editor_absoluteX="1dp"
-            tools:layout_editor_absoluteY="672dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent">
-
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Book"
-                android:icon="@drawable/ic_baseline_menu_book_24" />
-
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Favorite"
-                android:icon="@drawable/ic_baseline_favorite_24" />
-
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Profile"
-                android:icon="@drawable/ic_baseline_perm_identity_24"/>
-        </com.google.android.material.tabs.TabLayout>
-
-        <!--<androidx.cardview.widget.CardView
-            xmlns:card_view="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/card_view"
-            android:layout_gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            card_view:layout_constraintBottom_toTopOf="@id/tabLayout"
-            card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:cardCornerRadius="18dp"
-            card_view:cardBackgroundColor="@color/teal_700">
-
-            <TextView
-                android:id="@+id/info_text"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="Welcome to card"
-                android:gravity="center"/>
-        </androidx.cardview.widget.CardView>-->
+            android:contentDescription="TODO"
+            android:focusable="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <!--Following is the drawer-->
     <LinearLayout
+        android:id="@+id/drawer_left"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/drawer_left"
         android:layout_gravity="start"
-        android:orientation="vertical"
-        android:background="@color/white">
+        android:background="@color/white"
+        android:orientation="vertical">
+
         <TextView
+            android:id="@+id/drawer_text"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/drawer_text"
-            android:text="@string/welcome_to_drawer"
             android:gravity='center'
-            android:textColor="@color/black"/>
+            android:text="@string/welcome_to_drawer"
+            android:textColor="@color/black" />
 
     </LinearLayout>
 

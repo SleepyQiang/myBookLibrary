@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/mydialog_background"
-    >
+    android:background="@drawable/mydialog_background">
 
     <TextView
         android:id="@+id/textTitle_d"
@@ -21,33 +20,33 @@
         android:id="@+id/textAuthor_d"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/black"
+        android:layout_below="@id/textTitle_d"
         android:layout_margin="5dp"
-        android:layout_below="@id/textTitle_d" />
+        android:textColor="@color/black" />
 
     <TextView
         android:id="@+id/textYear_d"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/black"
+        android:layout_below="@id/textAuthor_d"
         android:layout_margin="5dp"
-        android:layout_below="@id/textAuthor_d" />
+        android:textColor="@color/black" />
+
     <TextView
         android:id="@+id/textPress_d"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:layout_margin="5dp"
         android:layout_below="@id/textYear_d"
-        />
+        android:layout_margin="5dp"
+        android:textColor="@color/black" />
+
     <TextView
         android:id="@+id/textIsbn_d"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:layout_margin="5dp"
         android:layout_below="@id/textPress_d"
-        />
+        android:layout_margin="5dp"
+        android:textColor="@color/black" />
 
 
 </RelativeLayout>

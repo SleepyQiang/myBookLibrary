@@ -1,10 +1,12 @@
-package com.jnu.mybookshop;
+package com.jnu.booklibrary;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -25,34 +27,27 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.tabs.TabLayout;
-import com.jnu.mybookshop.data.Book;
-import com.jnu.mybookshop.data.DataSaver;
-import com.jnu.mybookshop.dialog.MyDialog;
+import com.jnu.booklibrary.data.Book;
+import com.jnu.booklibrary.data.DataSaver;
+import com.jnu.booklibrary.dialog.MyDialog;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-
-    private CardView myIdentityCard;
-
-    RecyclerView mRecyclerView;
-    private MyAdapter mMyAdapter;
-
+    private RecyclerView myRecyclerView;
+    private Toolbar myToolbar;
+    private ActionBarDrawerToggle myToggle;
+    private MyAdapter myMyAdapter;
+    private DrawerLayout myDrawerLayout;
+    private LinearLayout myLinearLayout;
+    private TextView myDrawerText;
+    private FloatingActionButton myFab;
     /*private Spinner spinner;
     private ArrayList<String> spinner_list;
     private ArrayAdapter<String> spinner_list_adapter;*/
 
-    private TabLayout myTabLayout;
-
-    private DrawerLayout myDrawerLayout;
-    private LinearLayout myLinearLayout;
-    private TextView myDrawerText;
-
-    private FloatingActionButton myFab;
-
-    ArrayList<Book> mBookList = new ArrayList<>();
+    ArrayList<Book> myBookList = new ArrayList<>();
     public static final int MENU_ID_ADD = 1;
     public static final int MENU_ID_UPDATE = 2;
     public static final int MENU_ID_DELETE = 3;
@@ -60,19 +55,23 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_toolbar, menu);
+
         return true;
     }
 
     private ActivityResultLauncher<Intent> addDataLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
         if (null != result) {
             Intent intent = result.getData();
+
             if (result.getResultCode() == InputBookListActivity.RESULT_CODE) {
                 Bundle bundle = intent.getExtras();
+
                 String name = bundle.getString("name");
                 int position = bundle.getInt("position");
-                mBookList.add(position, new Book(name, R.drawable.day_night, "[日] 东野圭吾", "南海出版公司", "2013-1-1", "9.2", "9787544258609"));
-                new DataSaver().Save(this, mBookList);
-                mMyAdapter.notifyItemInserted(position);
+                myBookList.add(position, new Book(name, R.drawable.wa, "莫言", " 浙江文艺出版社", "2017-1-1", "8.9", "9787533946661"));
+
+                new DataSaver().Save(this, myBookList);
+                myMyAdapter.notifyItemInserted(position);
             }
         }
     });
@@ -80,43 +79,48 @@ public class MainActivity extends AppCompatActivity {
     private ActivityResultLauncher<Intent> updateDataLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
         if (null != result) {
             Intent intent = result.getData();
+
             if (result.getResultCode() == InputBookListActivity.RESULT_CODE) {
                 Bundle bundle = intent.getExtras();
+
                 String name = bundle.getString("name");
                 int position = bundle.getInt("position");
-                mBookList.get(position).setTitle(name);
-                new DataSaver().Save(this, mBookList);
-                mMyAdapter.notifyItemChanged(position);
+                myBookList.get(position).setTitle(name);
+
+                new DataSaver().Save(this, myBookList);
+                myMyAdapter.notifyItemChanged(position);
             }
         }
     });
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        myIdentityCard = findViewById(R.id.my_identity_card);
-        myIdentityCard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                myDrawerLayout.openDrawer(myLinearLayout);
-            }
-        });
+//        myIdentityCard = findViewById(R.id.my_identity_card);
+//        myIdentityCard.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                myDrawerLayout.openDrawer(myLinearLayout);
+//            }
+//        });
 
-        mRecyclerView = this.findViewById(R.id.recyclerview);
+        myRecyclerView = this.findViewById(R.id.recyclerview);
 
-        /*MaterialToolbar toolbar = findViewById(R.id.materialToolbar);
-        setSupportActionBar(toolbar);
-        ActionBar supportActionBar = getSupportActionBar();
-        supportActionBar.setHomeButtonEnabled(true);
-        supportActionBar.setDisplayHomeAsUpEnabled(true);
-        supportActionBar.setHomeAsUpIndicator(R.drawable.ic_baseline_menu_24);*/
-
+//        Objects.requireNonNull(getSupportActionBar()).setHomeButtonEnabled(true);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//
+//        myToolbar = findViewById(R.id.toolbar);
+//        setSupportActionBar(myToolbar);
         myDrawerLayout = findViewById(R.id.drawer_main);
         myDrawerText = findViewById(R.id.drawer_text);
         myLinearLayout = findViewById(R.id.drawer_left);
+
+        // 实现左上角菜单图标打开drawer，目前存在bug
+//        myToggle = new ActionBarDrawerToggle(this, myDrawerLayout, myToolbar, R.string.welcome_to_drawer, R.string.sure_to_delete);
+//        myToggle.syncState();
+
         myDrawerLayout.addDrawerListener(new DrawerLayout.DrawerListener() {
             @Override
             public void onDrawerSlide(@NonNull View drawerView, float slideOffset) {
@@ -125,12 +129,12 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onDrawerOpened(@NonNull View drawerView) {
-                Toast.makeText(MainActivity.this, "Drawer open", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onDrawerClosed(@NonNull View drawerView) {
-                Toast.makeText(MainActivity.this, "Drawer closed", Toast.LENGTH_LONG).show();
+                Toast.makeText(MainActivity.this, "", Toast.LENGTH_LONG).show();
             }
 
             @Override
@@ -139,41 +143,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        myTabLayout = findViewById(R.id.tabLayout);
-        myTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                switch (tab.getPosition()){
-                    case 0:
-                        Toast.makeText(MainActivity.this,"Monday selected",Toast.LENGTH_SHORT).show();
-                        break;
-                    case 1:
-                        Toast.makeText(MainActivity.this,"Tuesday selected",Toast.LENGTH_SHORT).show();
-                        break;
-                    case 2:
-                        Toast.makeText(MainActivity.this,"Wednesday selected",Toast.LENGTH_SHORT).show();
-                        break;
-                }
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });
-
         myFab = findViewById(R.id.floatingActionButton);
         Drawable myDrawable = getDrawable(R.drawable.ic_baseline_add_24);
         myFab.setImageDrawable(myDrawable);
 
-        Book b0 = new Book("三体", R.drawable.threebody1, "刘慈欣", "重庆出版社", "2008-1", "8.9", "9787536692930");
-        Book b1 = new Book("三体Ⅱ", R.drawable.threebody2, "刘慈欣", "重庆出版社", "2008-5", "9.3", "9787536693968");
-        Book b2 = new Book("三体Ⅲ", R.drawable.threebody3, "刘慈欣", "重庆出版社", "2010-11", "9.2", "9787229030933");
+        Book b0 = new Book("家", R.drawable.jia, "巴金", "人民文学出版社", "2013-6-1", "8.3", "9787020096466");
+        Book b1 = new Book("春", R.drawable.chun, "巴金", "人民文学出版社", "2013-6-1", "8.3", "9787020096473");
+        Book b2 = new Book("秋", R.drawable.qiu, "巴金", "人民文学出版社", "2013-6-1", "8.5", "9787020096480");
 
         /*spinner = findViewById(R.id.spinner);
         spinner_list = new ArrayList<String>();
@@ -203,18 +179,18 @@ public class MainActivity extends AppCompatActivity {
         });*/
 
         DataSaver dataSaver = new DataSaver();
-        mBookList = dataSaver.Load(this);
+        myBookList = dataSaver.Load(this);
 
-        if (mBookList.size() == 0) {
-            mBookList.add(b0);
-            mBookList.add(b1);
-            mBookList.add(b2);
+        if (myBookList.size() == 0) {
+            myBookList.add(b0);
+            myBookList.add(b1);
+            myBookList.add(b2);
         }
 
-        mMyAdapter = new MyAdapter();
-        mRecyclerView.setAdapter(mMyAdapter);
+        myMyAdapter = new MyAdapter();
+        myRecyclerView.setAdapter(myMyAdapter);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        mRecyclerView.setLayoutManager(layoutManager);//RecycleView implementation
+        myRecyclerView.setLayoutManager(layoutManager); // RecycleView implementation
 
         FloatingActionButton fab = findViewById(R.id.floatingActionButton);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -222,39 +198,38 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, InputBookListActivity.class);
                 intent.putExtra("position", 0);
+
                 addDataLauncher.launch(intent);
             }
-        }); //FloatingActionButton implementation
+        });
     }
 
     public List<Book> getListBooks() {
-        return mBookList;
+        return myBookList;
     }
 
-    public void showBookInfo(Book book){
+    public void showBookInfo(Book book) {
         MyDialog myDialog = new MyDialog(MainActivity.this, book);
         myDialog.show();
     }
-
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                break;
+                Toast.makeText(MainActivity.this, "头像！", Toast.LENGTH_SHORT).show();
             case R.id.app_bar_search:
-                Toast.makeText(MainActivity.this, "You choose " +item.toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "要" + item.toString() + "些什么呢？", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.toolbar_collection:
-                Toast.makeText(MainActivity.this, "You choose " +item.toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "查看" + item.toString(), Toast.LENGTH_SHORT).show();
                 break;
             case R.id.toolbar_fontsize:
-                Toast.makeText(MainActivity.this, "You choose " +item.toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "调整 " + item.toString(), Toast.LENGTH_SHORT).show();
                 break;
             case R.id.toolbar_share:
-                Toast.makeText(MainActivity.this, "You choose " +item.toString(), Toast.LENGTH_SHORT).show();
-                return true;
-
+                Toast.makeText(MainActivity.this, "要" + item.toString() + "给谁？", Toast.LENGTH_SHORT).show();
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -265,12 +240,14 @@ public class MainActivity extends AppCompatActivity {
             case 1:
                 Intent intent = new Intent(this, InputBookListActivity.class);
                 intent.putExtra("position", item.getOrder());
+
                 addDataLauncher.launch(intent);
                 break;
             case 2:
                 Intent intentUpdate = new Intent(this, InputBookListActivity.class);
                 intentUpdate.putExtra("position", item.getOrder());
-                intentUpdate.putExtra("name", mBookList.get(item.getOrder()).getTitle());
+                intentUpdate.putExtra("name", myBookList.get(item.getOrder()).getTitle());
+
                 updateDataLauncher.launch(intentUpdate);
                 break;
             case 3:
@@ -280,9 +257,9 @@ public class MainActivity extends AppCompatActivity {
                         .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                mBookList.remove(item.getOrder());
-                                new DataSaver().Save(MainActivity.this, mBookList);
-                                mMyAdapter.notifyItemRemoved(item.getOrder());
+                                myBookList.remove(item.getOrder());
+                                new DataSaver().Save(MainActivity.this, myBookList);
+                                myMyAdapter.notifyItemRemoved(item.getOrder());
                             }
                         })
                         .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
@@ -304,54 +281,51 @@ public class MainActivity extends AppCompatActivity {
         public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             View view = View.inflate(MainActivity.this, R.layout.book_list, null);
             MyViewHolder myViewHolder = new MyViewHolder(view);
+
             return myViewHolder;
         }
 
         @Override
         public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-            Book book = mBookList.get(position);
-            holder.mImageView.setImageDrawable(getResources().getDrawable(book.getCoverResourceId()));
-            holder.mImageStar.setImageDrawable(getResources().getDrawable(R.drawable.ic_baseline_star_24));
-            holder.mTextRank.setText(book.getRank());
-            holder.mTextView.setText(book.getTitle());
-            holder.mTextAuthor.setText(book.getAuthor());
-            holder.mTextYear.setText(book.getYear());
-            holder.mCardView.setOnClickListener(view -> showBookInfo(book));
+            Book book = myBookList.get(position);
+            holder.myImageView.setImageDrawable(getResources().getDrawable(book.getCoverResourceId()));
+            holder.myTextRank.setText(book.getRank());
+            holder.myTextView.setText(book.getTitle());
+            holder.myTextAuthor.setText(book.getAuthor());
+            holder.myTextYear.setText(book.getYear());
+            holder.myCardView.setOnClickListener(view -> showBookInfo(book));
         }
 
         @Override
         public int getItemCount() {
-            return mBookList.size();
+            return myBookList.size();
         }
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener {
-        ImageView mImageView;
-        ImageView mImageStar;
-        TextView mTextRank;
-        TextView mTextView;
-        TextView mTextAuthor;
-        TextView mTextYear;
-        CardView mCardView;
+        ImageView myImageView;
+        TextView myTextRank;
+        TextView myTextView;
+        TextView myTextAuthor;
+        TextView myTextYear;
+        CardView myCardView;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            mImageView = itemView.findViewById(R.id.imageView);
-            mTextView = itemView.findViewById(R.id.textView);
-            mCardView = itemView.findViewById(R.id.cardView);
-            mImageStar= itemView.findViewById(R.id.imageStar);
-            mTextRank = itemView.findViewById(R.id.textRank);
-            mTextAuthor = itemView.findViewById(R.id.textAuthor);
-            mTextYear = itemView.findViewById(R.id.textYear);
+            myImageView = itemView.findViewById(R.id.imageView);
+            myTextView = itemView.findViewById(R.id.textView);
+            myCardView = itemView.findViewById(R.id.cardView);
+            myTextRank = itemView.findViewById(R.id.textRank);
+            myTextAuthor = itemView.findViewById(R.id.textAuthor);
+            myTextYear = itemView.findViewById(R.id.textYear);
             itemView.setOnCreateContextMenuListener(this);
         }
 
         @Override
         public void onCreateContextMenu(ContextMenu contextMenu, View view, ContextMenu.ContextMenuInfo contextMenuInfo) {
-            contextMenu.add(0, MENU_ID_ADD, getAdapterPosition(), "Add " + getAdapterPosition());
-            contextMenu.add(0, MENU_ID_UPDATE, getAdapterPosition(), "Update " + getAdapterPosition());
-            contextMenu.add(0, MENU_ID_DELETE, getAdapterPosition(), "Delete " + getAdapterPosition());
+            contextMenu.add(0, MENU_ID_ADD, getAdapterPosition(), "添加 " + getAdapterPosition());
+            contextMenu.add(0, MENU_ID_UPDATE, getAdapterPosition(), "更新 " + getAdapterPosition());
+            contextMenu.add(0, MENU_ID_DELETE, getAdapterPosition(), "删除 " + getAdapterPosition());
         }
     }
-
 }

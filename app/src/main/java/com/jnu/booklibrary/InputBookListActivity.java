@@ -1,12 +1,12 @@
-package com.jnu.mybookshop;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.jnu.booklibrary;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class InputBookListActivity extends AppCompatActivity {
     public static final int RESULT_CODE = 1;
@@ -19,27 +19,27 @@ public class InputBookListActivity extends AppCompatActivity {
 
         EditText editBookName = findViewById(R.id.edittext_book_name);
 
-        position=this.getIntent().getIntExtra("position",0);
-        String title=this.getIntent().getStringExtra("name");
+        position = this.getIntent().getIntExtra("position", 0);
+        String title = this.getIntent().getStringExtra("name");
 
-        if(null!=title){
+        if (null != title) {
             editBookName.setText(title);
         }
 
         Button buttonOk = findViewById(R.id.button_ok);
-        buttonOk.setOnClickListener(new View.OnClickListener(){
+
+        buttonOk.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view){
-                Intent intent=new Intent();
-                Bundle bundle=new Bundle();
-                bundle.putString("name",editBookName.getText().toString());
-                bundle.putInt("position",position);
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                Bundle bundle = new Bundle();
+
+                bundle.putString("name", editBookName.getText().toString());
+                bundle.putInt("position", position);
                 intent.putExtras(bundle);
                 setResult(RESULT_CODE, intent);
                 InputBookListActivity.this.finish();
             }
         });
-
-
     }
 }

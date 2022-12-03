@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">myBookshop</string>
+    <string name="app_name">BookLibrary</string>
     <string name="confirmation">confirmation</string>
     <string name="sure_to_delete">Are you sure to delete?</string>
     <string name="yes">Yes</string>

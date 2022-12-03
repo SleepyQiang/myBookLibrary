@@ -1,20 +1,19 @@
-package com.jnu.mybookshop;
+package com.jnu.booklibrary;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.fragment.app.Fragment;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link Fragment_two#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Fragment_two extends Fragment {
 
+public class Fragment_two extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -36,6 +35,7 @@ public class Fragment_two extends Fragment {
      * @param param2 Parameter 2.
      * @return A new instance of fragment Fragment_two.
      */
+
     // TODO: Rename and change types and number of parameters
     public static Fragment_two newInstance(String param1, String param2) {
         Fragment_two fragment = new Fragment_two();

@@ -1,9 +1,8 @@
-package com.jnu.mybookshop.data;
+package com.jnu.booklibrary.data;
 
 import java.io.Serializable;
 
 public class Book implements Serializable {
-
     private String title;
     private int coverResourceId;
     private String author;
@@ -12,9 +11,9 @@ public class Book implements Serializable {
     private String rank;
     private String isbn;
 
-    public Book(String name, int id, String author, String press, String year, String rank, String isbn){
-        this.title=name;
-        this.coverResourceId=id;
+    public Book(String name, int id, String author, String press, String year, String rank, String isbn) {
+        this.title = name;
+        this.coverResourceId = id;
         this.author = author;
         this.press = press;
         this.year = year;
@@ -34,11 +33,11 @@ public class Book implements Serializable {
         this.title = title;
     }
 
-    public int getCoverResourceId(){
+    public int getCoverResourceId() {
         return coverResourceId;
     }
 
-    public String getTitle(){
+    public String getTitle() {
         return title;
     }
 
@@ -77,11 +76,4 @@ public class Book implements Serializable {
     public void setRank(String rank) {
         this.rank = rank;
     }
-
-
-
-
-
-
-
 }

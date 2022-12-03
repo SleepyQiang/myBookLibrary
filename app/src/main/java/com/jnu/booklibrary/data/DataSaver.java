@@ -1,4 +1,4 @@
-package com.jnu.mybookshop.data;
+package com.jnu.booklibrary.data;
 
 import android.content.Context;
 
@@ -11,11 +11,12 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 public class DataSaver {
-    public void Save(Context context, ArrayList<Book> data){
+    public void Save(Context context, ArrayList<Book> data) {
         try {
             FileOutputStream fileOutputStream = context.openFileOutput("myData.dat", Context.MODE_PRIVATE);
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
             objectOutputStream.writeObject(data);
+
             objectOutputStream.close();
             fileOutputStream.close();
         } catch (Exception e) {
@@ -24,12 +25,13 @@ public class DataSaver {
     }
 
     @NonNull
-    public ArrayList<Book> Load(Context context){
+    public ArrayList<Book> Load(Context context) {
         ArrayList<Book> data = new ArrayList<>();
         try {
             FileInputStream fileInputStream = context.openFileInput("myData.dat");
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
-            data = (ArrayList<Book>)objectInputStream.readObject();
+            data = (ArrayList<Book>) objectInputStream.readObject();
+
             objectInputStream.close();
             fileInputStream.close();
         } catch (Exception e) {
@@ -37,5 +39,5 @@ public class DataSaver {
         }
         return data;
     }
-
 }
+
