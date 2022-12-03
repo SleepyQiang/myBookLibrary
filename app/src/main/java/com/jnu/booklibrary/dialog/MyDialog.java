@@ -12,21 +12,16 @@ import com.jnu.booklibrary.R;
 import com.jnu.booklibrary.data.Book;
 
 public class MyDialog extends Dialog {
-    private TextView textTitle_d;
-    private TextView textAuthor_d;
-    private TextView textPress_d;
-    private TextView textYear_d;
-    private TextView textIsbn_d;
-
     public MyDialog(@NonNull Context context, Book book) {
         super(context, R.style.myDialog);
         View view = LayoutInflater.from(getContext()).inflate(R.layout.book_info, null);
 
-        textTitle_d = view.findViewById(R.id.textTitle_d);
-        textAuthor_d = view.findViewById(R.id.textAuthor_d);
-        textPress_d = view.findViewById(R.id.textPress_d);
-        textYear_d = view.findViewById(R.id.textYear_d);
-        textIsbn_d = view.findViewById(R.id.textIsbn_d);
+        TextView textTitle_d = view.findViewById(R.id.textTitle_d);
+        TextView textAuthor_d = view.findViewById(R.id.textAuthor_d);
+        TextView textPress_d = view.findViewById(R.id.textPress_d);
+        TextView textYear_d = view.findViewById(R.id.textYear_d);
+        TextView textIsbn_d = view.findViewById(R.id.textIsbn_d);
+
         textTitle_d.setText("Title: " + book.getTitle());
         textAuthor_d.setText("Author: " + book.getAuthor());
         textPress_d.setText("Press: " + book.getPress());

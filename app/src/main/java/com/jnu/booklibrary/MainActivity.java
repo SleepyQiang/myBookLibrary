@@ -143,9 +143,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        myFab = findViewById(R.id.floatingActionButton);
-        Drawable myDrawable = getDrawable(R.drawable.ic_baseline_add_24);
-        myFab.setImageDrawable(myDrawable);
+//        myFab = findViewById(R.id.floatingActionButton);
+////        Drawable myDrawable = getDrawable(R.drawable.ic_baseline_add_24);
+//        myFab.setImageDrawable(myDrawable);
 
         Book b0 = new Book("家", R.drawable.jia, "巴金", "人民文学出版社", "2013-6-1", "8.3", "9787020096466");
         Book b1 = new Book("春", R.drawable.chun, "巴金", "人民文学出版社", "2013-6-1", "8.3", "9787020096473");

@@ -21,59 +21,59 @@ public class Book implements Serializable {
         this.isbn = isbn;
     }
 
-    public String getIsbn() {
-        return isbn;
-    }
-
-    public void setIsbn(String isbn) {
-        this.isbn = isbn;
-    }
-
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public int getCoverResourceId() {
-        return coverResourceId;
-    }
-
-    public String getTitle() {
-        return title;
     }
 
     public void setCoverResourceId(int coverResourceId) {
         this.coverResourceId = coverResourceId;
     }
 
-    public String getAuthor() {
-        return author;
-    }
-
     public void setAuthor(String author) {
         this.author = author;
-    }
-
-    public String getPress() {
-        return press;
     }
 
     public void setPress(String press) {
         this.press = press;
     }
 
-    public String getYear() {
-        return year;
-    }
-
     public void setYear(String year) {
         this.year = year;
+    }
+
+    public void setRank(String rank) {
+        this.rank = rank;
+    }
+
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public int getCoverResourceId() {
+        return coverResourceId;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public String getPress() {
+        return press;
+    }
+
+    public String getYear() {
+        return year;
     }
 
     public String getRank() {
         return rank;
     }
 
-    public void setRank(String rank) {
-        this.rank = rank;
+    public String getIsbn() {
+        return isbn;
     }
 }
