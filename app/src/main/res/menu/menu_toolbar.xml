@@ -11,7 +11,7 @@
 
     <item
         android:id="@+id/app_bar_search"
-        android:icon="@drawable/ic_baseline_search_24"
+        android:icon="?android:attr/actionModeWebSearchDrawable"
         android:orderInCategory="2"
         android:title="搜索"
         app:actionViewClass="android.widget.SearchView"

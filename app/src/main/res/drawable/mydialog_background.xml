@@ -5,6 +5,6 @@
     <solid android:color="@color/antiquewhite"/>
 
     <!--设置圆角的角度-->
-    <corners android:radius="18dp"/>
+    <corners android:radius="20dp"/>
 
 </shape>
