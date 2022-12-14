@@ -46,8 +46,8 @@ public class MainActivity extends AppCompatActivity {
     private TextView myDrawerText;
     private FloatingActionButton myFab;
     private Spinner mySpinner;
-    private ArrayList<String> mySpinner_list;
-    private ArrayAdapter<String> mySpinner_list_adapter;
+    private ArrayList<String> mySpinnerList;
+    private ArrayAdapter<String> mySpinnerAdapter;
 
     ArrayList<Book> myBookList = new ArrayList<>();
     public static final int MENU_ID_ADD = 1;
@@ -154,27 +154,34 @@ public class MainActivity extends AppCompatActivity {
         Book b2 = new Book("秋", R.drawable.qiu, "巴金", "人民文学出版社", "2013-6-1", "8.5", "9787020096480");
 
         mySpinner = findViewById(R.id.spinner);
-        mySpinner_list = new ArrayList<String>();
+        mySpinnerList = new ArrayList<String>();
+        mySpinnerAdapter = new ArrayAdapter<String>(this, R.layout.item_for_custom_spinner, mySpinnerList);
 
-        mySpinner_list.add("All");
-        mySpinner_list.add("Fragment1");
-        mySpinner_list.add("Fragment2");
-        mySpinner_list_adapter = new ArrayAdapter<String>(this, R.layout.spinner_item_white, mySpinner_list);
-        mySpinner_list_adapter.setDropDownViewResource(R.layout.spinner_drop_down_white);
-        mySpinner.setAdapter(mySpinner_list_adapter);
+        mySpinnerList.add("All");
+        mySpinnerList.add("Shelf1");
+        mySpinnerList.add("Shelf2");
 
+        mySpinner.setAdapter(mySpinnerAdapter);
+
+        final int[] flag ={0};
         mySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+                if(flag[0]==0){
+                    flag[0]+=1;
+                    return;
+                }
+
                 switch (i) {
                     case 0:
-                        Toast.makeText(MainActivity.this, "You choose " + mySpinner_list_adapter.getItem(i), Toast.LENGTH_SHORT).show();
-                        break;
                     case 1:
-                        break;
                     case 2:
+                        Toast.makeText(MainActivity.this, "You choose " + mySpinnerAdapter.getItem(i), Toast.LENGTH_SHORT).show();
+                        break;
                 }
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
 
