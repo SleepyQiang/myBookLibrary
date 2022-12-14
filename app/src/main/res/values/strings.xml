@@ -7,5 +7,14 @@
     <string name="name">Name</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="book_list">BookList</string>
+    <string name="todo">TODO</string>
     <string name="welcome_to_drawer">Welcome to drawer</string>
+    <string name="touxiang">头像</string>
+    <string name="Search">搜索</string>
+    <string name="Collect">收藏</string>
+    <string name="Share">分享</string>
+    <string name="Fontsize">字号</string>
+    <string name="ok">Ok</string>
+
+
 </resources>

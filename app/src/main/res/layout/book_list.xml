@@ -20,7 +20,8 @@
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="141dp"
-            android:layout_height="200dp" />
+            android:layout_height="200dp"
+            android:contentDescription="@string/todo" />
 
         <TextView
             android:id="@+id/textView"

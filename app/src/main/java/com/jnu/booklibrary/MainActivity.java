@@ -14,15 +14,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,9 +45,9 @@ public class MainActivity extends AppCompatActivity {
     private LinearLayout myLinearLayout;
     private TextView myDrawerText;
     private FloatingActionButton myFab;
-    /*private Spinner spinner;
-    private ArrayList<String> spinner_list;
-    private ArrayAdapter<String> spinner_list_adapter;*/
+    private Spinner mySpinner;
+    private ArrayList<String> mySpinner_list;
+    private ArrayAdapter<String> mySpinner_list_adapter;
 
     ArrayList<Book> myBookList = new ArrayList<>();
     public static final int MENU_ID_ADD = 1;
@@ -144,28 +146,29 @@ public class MainActivity extends AppCompatActivity {
         });
 
 //        myFab = findViewById(R.id.floatingActionButton);
-////        Drawable myDrawable = getDrawable(R.drawable.ic_baseline_add_24);
+//      Drawable myDrawable = getDrawable(R.drawable.ic_baseline_add_24);
 //        myFab.setImageDrawable(myDrawable);
 
         Book b0 = new Book("家", R.drawable.jia, "巴金", "人民文学出版社", "2013-6-1", "8.3", "9787020096466");
         Book b1 = new Book("春", R.drawable.chun, "巴金", "人民文学出版社", "2013-6-1", "8.3", "9787020096473");
         Book b2 = new Book("秋", R.drawable.qiu, "巴金", "人民文学出版社", "2013-6-1", "8.5", "9787020096480");
 
-        /*spinner = findViewById(R.id.spinner);
-        spinner_list = new ArrayList<String>();
-        spinner_list.add("All");
-        spinner_list.add("Fragment1");
-        spinner_list.add("Fragment2");
-        spinner_list_adapter = new ArrayAdapter<String>(this, R.layout.spinner_item_white, spinner_list);
-        spinner_list_adapter.setDropDownViewResource(R.layout.spinner_drop_down_white);
-        spinner.setAdapter(spinner_list_adapter);
+        mySpinner = findViewById(R.id.spinner);
+        mySpinner_list = new ArrayList<String>();
 
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        mySpinner_list.add("All");
+        mySpinner_list.add("Fragment1");
+        mySpinner_list.add("Fragment2");
+        mySpinner_list_adapter = new ArrayAdapter<String>(this, R.layout.spinner_item_white, mySpinner_list);
+        mySpinner_list_adapter.setDropDownViewResource(R.layout.spinner_drop_down_white);
+        mySpinner.setAdapter(mySpinner_list_adapter);
+
+        mySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 switch (i) {
                     case 0:
-                        Toast.makeText(MainActivity.this, "You choose " + spinner_list_adapter.getItem(i), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "You choose " + mySpinner_list_adapter.getItem(i), Toast.LENGTH_SHORT).show();
                         break;
                     case 1:
                         break;
@@ -176,7 +179,7 @@ public class MainActivity extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> adapterView) {
 
             }
-        });*/
+        });
 
         DataSaver dataSaver = new DataSaver();
         myBookList = dataSaver.Load(this);
@@ -323,9 +326,9 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onCreateContextMenu(ContextMenu contextMenu, View view, ContextMenu.ContextMenuInfo contextMenuInfo) {
-            contextMenu.add(0, MENU_ID_ADD, getAdapterPosition(), "添加 " + getAdapterPosition());
-            contextMenu.add(0, MENU_ID_UPDATE, getAdapterPosition(), "更新 " + getAdapterPosition());
-            contextMenu.add(0, MENU_ID_DELETE, getAdapterPosition(), "删除 " + getAdapterPosition());
+            contextMenu.add(0, MENU_ID_ADD, getAdapterPosition(), "添加 ");
+            contextMenu.add(0, MENU_ID_UPDATE, getAdapterPosition(), "编辑 ");
+            contextMenu.add(0, MENU_ID_DELETE, getAdapterPosition(), "删除 ");
         }
     }
 }

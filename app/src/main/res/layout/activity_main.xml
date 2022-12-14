@@ -11,7 +11,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
         <LinearLayout
             android:id="@+id/linear_top"
             android:layout_width="match_parent"
@@ -19,12 +18,20 @@
             android:orientation="horizontal"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:spinnerMode="dropdown"
+            app:layout_constraintTop_toBottomOf="@id/linear_top"
+            />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerview"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/linear_top"
+            app:layout_constraintTop_toBottomOf="@id/spinner"
             app:layout_constraintVertical_bias="0.0"
             tools:layout_editor_absoluteX="0dp">
 
@@ -36,12 +43,11 @@
             android:layout_height="wrap_content"
             android:background="@color/red"
             android:clickable="true"
-            android:contentDescription="TODO"
+            android:contentDescription="@string/todo"
             android:focusable="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:srcCompat="@android:drawable/ic_input_add"
-            />
+            app:srcCompat="@android:drawable/ic_input_add" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

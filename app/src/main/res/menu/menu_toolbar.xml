@@ -6,33 +6,33 @@
         android:id="@+id/toolbar_home"
         android:icon="@drawable/touxiang"
         android:orderInCategory="1"
-        android:title="头像"
+        android:title="@string/touxiang"
         app:showAsAction="always" />
 
     <item
         android:id="@+id/app_bar_search"
         android:icon="?android:attr/actionModeWebSearchDrawable"
         android:orderInCategory="2"
-        android:title="搜索"
+        android:title="@string/Search"
         app:actionViewClass="android.widget.SearchView"
         app:showAsAction="ifRoom|collapseActionView" />
 
     <item
         android:id="@+id/toolbar_collection"
         android:orderInCategory="1"
-        android:title="收藏"
+        android:title="@string/Collect"
         app:showAsAction="never" />
 
     <item
         android:id="@+id/toolbar_share"
         android:orderInCategory="2"
-        android:title="分享"
+        android:title="@string/Share"
         app:showAsAction="never" />
 
     <item
         android:id="@+id/toolbar_fontsize"
         android:orderInCategory="3"
-        android:title="字号"
+        android:title="@string/Fontsize"
         app:showAsAction="never" />
 
 </menu>

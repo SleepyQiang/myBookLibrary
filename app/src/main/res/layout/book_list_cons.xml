@@ -19,7 +19,7 @@
             android:id="@+id/imageView"
             android:layout_width="141dp"
             android:layout_height="200dp"
-            android:contentDescription="TODO"
+            android:contentDescription="@string/todo"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
