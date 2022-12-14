@@ -18,13 +18,13 @@
             android:orientation="horizontal"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <Spinner
+        <com.jnu.booklibrary.ReSpinner
             android:id="@+id/spinner"
             android:layout_width="150dp"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:spinnerMode="dropdown"
-            app:layout_constraintTop_toBottomOf="@id/linear_top"
-            />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/linear_top" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerview"
