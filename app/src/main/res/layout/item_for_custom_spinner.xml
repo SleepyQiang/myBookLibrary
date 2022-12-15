@@ -7,7 +7,7 @@
     android:paddingTop="15dp"
     android:paddingBottom="15dp"
     android:singleLine="true"
-
+    android:text="@string/Spinner_menu"
     android:textColor="@color/purple_700"
     android:textSize="18sp" />
 

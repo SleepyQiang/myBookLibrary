@@ -1,17 +1,5 @@
 package com.jnu.booklibrary;
 
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.cardview.widget.CardView;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -28,16 +16,31 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.jnu.booklibrary.data.Book;
-import com.jnu.booklibrary.data.DataSaver;
-import com.jnu.booklibrary.dialog.MyDialog;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import com.jnu.booklibrary.data.Book;
+import com.jnu.booklibrary.data.DataSaver;
+import com.jnu.booklibrary.dialog.MyDialog;
+
 public class MainActivity extends AppCompatActivity {
+
     private RecyclerView myRecyclerView;
+    private CardView myID;
     private Toolbar myToolbar;
     private ActionBarDrawerToggle myToggle;
     private MyAdapter myMyAdapter;
@@ -56,12 +59,14 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+
         getMenuInflater().inflate(R.menu.menu_toolbar, menu);
 
         return true;
     }
 
     private ActivityResultLauncher<Intent> addDataLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
+
         if (null != result) {
             Intent intent = result.getData();
 
@@ -79,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
     });
 
     private ActivityResultLauncher<Intent> updateDataLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
+
         if (null != result) {
             Intent intent = result.getData();
 
@@ -97,16 +103,20 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        myIdentityCard = findViewById(R.id.my_identity_card);
-//        myIdentityCard.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                myDrawerLayout.openDrawer(myLinearLayout);
-//            }
-//        });
+        myID = findViewById(R.id.CardView);
+
+        myID.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+
+                myDrawerLayout.openDrawer(myLinearLayout);
+            }
+        });
 
         myRecyclerView = this.findViewById(R.id.recyclerview);
 
@@ -119,11 +129,12 @@ public class MainActivity extends AppCompatActivity {
         myDrawerText = findViewById(R.id.drawer_text);
         myLinearLayout = findViewById(R.id.drawer_left);
 
-        // 实现左上角菜单图标打开drawer，目前存在bug
+//        实现左上角菜单图标打开drawer，存在bug
 //        myToggle = new ActionBarDrawerToggle(this, myDrawerLayout, myToolbar, R.string.welcome_to_drawer, R.string.sure_to_delete);
 //        myToggle.syncState();
 
         myDrawerLayout.addDrawerListener(new DrawerLayout.DrawerListener() {
+
             @Override
             public void onDrawerSlide(@NonNull View drawerView, float slideOffset) {
 
@@ -131,12 +142,14 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onDrawerOpened(@NonNull View drawerView) {
-                Toast.makeText(MainActivity.this, "", Toast.LENGTH_SHORT).show();
+
+                Toast.makeText(MainActivity.this, "抽屉菜单打开", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onDrawerClosed(@NonNull View drawerView) {
-                Toast.makeText(MainActivity.this, "", Toast.LENGTH_LONG).show();
+
+                Toast.makeText(MainActivity.this, "抽屉菜单关闭", Toast.LENGTH_LONG).show();
             }
 
             @Override
@@ -146,7 +159,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 //        myFab = findViewById(R.id.floatingActionButton);
-//      Drawable myDrawable = getDrawable(R.drawable.ic_baseline_add_24);
+//        Drawable myDrawable = getDrawable(R.drawable.ic_baseline_add_24);
 //        myFab.setImageDrawable(myDrawable);
 
         Book b0 = new Book("家", R.drawable.jia, "巴金", "人民文学出版社", "2013-6-1", "8.3", "9787020096466");
@@ -157,19 +170,20 @@ public class MainActivity extends AppCompatActivity {
         mySpinnerList = new ArrayList<String>();
         mySpinnerAdapter = new ArrayAdapter<String>(this, R.layout.item_for_custom_spinner, mySpinnerList);
 
-        mySpinnerList.add("All");
-        mySpinnerList.add("Shelf1");
-        mySpinnerList.add("Shelf2");
+        mySpinnerList.add("全部");
+        mySpinnerList.add("书架一号");
+        mySpinnerList.add("书架二号");
 
         mySpinner.setAdapter(mySpinnerAdapter);
 
-        final int[] flag ={0};
+        final int[] flag = {0};
         mySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
-                if(flag[0]==0){
-                    flag[0]+=1;
+                if (flag[0] == 0) {
+                    flag[0] += 1;
                     return;
                 }
 
@@ -177,7 +191,7 @@ public class MainActivity extends AppCompatActivity {
                     case 0:
                     case 1:
                     case 2:
-                        Toast.makeText(MainActivity.this, "You choose " + mySpinnerAdapter.getItem(i), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "切换到 " + mySpinnerAdapter.getItem(i), Toast.LENGTH_SHORT).show();
                         break;
                 }
             }
@@ -192,6 +206,7 @@ public class MainActivity extends AppCompatActivity {
         myBookList = dataSaver.Load(this);
 
         if (myBookList.size() == 0) {
+
             myBookList.add(b0);
             myBookList.add(b1);
             myBookList.add(b2);
@@ -204,8 +219,10 @@ public class MainActivity extends AppCompatActivity {
 
         FloatingActionButton fab = findViewById(R.id.floatingActionButton);
         fab.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
+
                 Intent intent = new Intent(MainActivity.this, InputBookListActivity.class);
                 intent.putExtra("position", 0);
 
@@ -215,16 +232,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public List<Book> getListBooks() {
+
         return myBookList;
     }
 
     public void showBookInfo(Book book) {
+
         MyDialog myDialog = new MyDialog(MainActivity.this, book);
         myDialog.show();
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
         switch (item.getItemId()) {
             case android.R.id.home:
                 Toast.makeText(MainActivity.this, "头像！", Toast.LENGTH_SHORT).show();
@@ -241,11 +261,13 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "要" + item.toString() + "给谁？", Toast.LENGTH_SHORT).show();
                 break;
         }
+
         return super.onOptionsItemSelected(item);
     }
 
     @Override
     public boolean onContextItemSelected(MenuItem item) {
+
         switch (item.getItemId()) {
             case 1:
                 Intent intent = new Intent(this, InputBookListActivity.class);
@@ -265,22 +287,27 @@ public class MainActivity extends AppCompatActivity {
                         .setTitle(R.string.confirmation)
                         .setMessage(R.string.sure_to_delete)
                         .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
+
                                 myBookList.remove(item.getOrder());
                                 new DataSaver().Save(MainActivity.this, myBookList);
                                 myMyAdapter.notifyItemRemoved(item.getOrder());
                             }
                         })
                         .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
 
                             }
                         }).create();
+
                 alertDialog.show();
                 break;
         }
+
         return super.onContextItemSelected(item);
     }
 
@@ -289,6 +316,7 @@ public class MainActivity extends AppCompatActivity {
         @NonNull
         @Override
         public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
             View view = View.inflate(MainActivity.this, R.layout.book_list, null);
             MyViewHolder myViewHolder = new MyViewHolder(view);
 
@@ -297,6 +325,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+
             Book book = myBookList.get(position);
             holder.myImageView.setImageDrawable(getResources().getDrawable(book.getCoverResourceId()));
             holder.myTextRank.setText(book.getRank());
@@ -308,11 +337,13 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public int getItemCount() {
+
             return myBookList.size();
         }
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener {
+
         ImageView myImageView;
         TextView myTextRank;
         TextView myTextView;
@@ -321,18 +352,22 @@ public class MainActivity extends AppCompatActivity {
         CardView myCardView;
 
         public MyViewHolder(@NonNull View itemView) {
+
             super(itemView);
+
             myImageView = itemView.findViewById(R.id.imageView);
             myTextView = itemView.findViewById(R.id.textView);
             myCardView = itemView.findViewById(R.id.cardView);
             myTextRank = itemView.findViewById(R.id.textRank);
             myTextAuthor = itemView.findViewById(R.id.textAuthor);
             myTextYear = itemView.findViewById(R.id.textYear);
+
             itemView.setOnCreateContextMenuListener(this);
         }
 
         @Override
         public void onCreateContextMenu(ContextMenu contextMenu, View view, ContextMenu.ContextMenuInfo contextMenuInfo) {
+
             contextMenu.add(0, MENU_ID_ADD, getAdapterPosition(), "添加 ");
             contextMenu.add(0, MENU_ID_UPDATE, getAdapterPosition(), "编辑 ");
             contextMenu.add(0, MENU_ID_DELETE, getAdapterPosition(), "删除 ");

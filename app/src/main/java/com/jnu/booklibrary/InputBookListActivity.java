@@ -9,11 +9,13 @@ import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class InputBookListActivity extends AppCompatActivity {
+
     public static final int RESULT_CODE = 1;
     private int position;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_input_book_list);
 
@@ -31,6 +33,7 @@ public class InputBookListActivity extends AppCompatActivity {
         buttonOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 Intent intent = new Intent();
                 Bundle bundle = new Bundle();
 

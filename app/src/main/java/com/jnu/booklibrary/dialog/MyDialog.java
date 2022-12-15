@@ -12,7 +12,9 @@ import com.jnu.booklibrary.R;
 import com.jnu.booklibrary.data.Book;
 
 public class MyDialog extends Dialog {
+
     public MyDialog(@NonNull Context context, Book book) {
+
         super(context, R.style.myDialog);
         View view = LayoutInflater.from(getContext()).inflate(R.layout.book_info, null);
 
