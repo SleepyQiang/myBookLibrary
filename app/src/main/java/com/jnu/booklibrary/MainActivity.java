@@ -36,6 +36,7 @@ import java.util.List;
 import com.jnu.booklibrary.data.Book;
 import com.jnu.booklibrary.data.DataSaver;
 import com.jnu.booklibrary.dialog.MyDialog;
+import com.jnu.booklibrary.InputBookListActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -75,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
 
                 String name = bundle.getString("name");
                 int position = bundle.getInt("position");
-                myBookList.add(position, new Book(name, R.drawable.wa, "莫言", " 浙江文艺出版社", "2017-1-1", "8.9", "9787533946661"));
+                myBookList.add(position,new Book(name,R.drawable.wa,"莫言","浙江文艺出版社","2017-1-1","8.9","9787533946661"));
 
                 new DataSaver().Save(this, myBookList);
                 myMyAdapter.notifyItemInserted(position);

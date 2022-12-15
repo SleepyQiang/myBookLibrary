@@ -47,6 +47,7 @@ public class InputBookListActivity extends AppCompatActivity {
         setCondition(0);
         imageTop = findViewById(R.id.imageTop);
         byte[] data = this.getIntent().getByteArrayExtra("cover");
+
         if (data == null) {
             imageTop.setImageDrawable(getDrawable(R.drawable.wa));
         } else {
@@ -56,9 +57,12 @@ public class InputBookListActivity extends AppCompatActivity {
 
         EditText editImageUrl = findViewById(R.id.edittextImageUrl);
         cardViewImageUrl = findViewById(R.id.cardViewImageUrl);
+
         cardViewImageUrl.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
+
                 url = editImageUrl.getText().toString();
                 if (url.length() != 0) {
                     new Thread(new Runnable() {
@@ -68,8 +72,10 @@ public class InputBookListActivity extends AppCompatActivity {
                             myBmp = getURLImage(url);
                             coverByte = BitmapToBytes(myBmp);
                             Message msg = new Message();
+
                             msg.what = 0;
                             msg.obj = myBmp;
+
                             System.out.println("000");
                             handle.sendMessage(msg);
                         }
@@ -142,6 +148,7 @@ public class InputBookListActivity extends AppCompatActivity {
 
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bm.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+
         return baos.toByteArray();
     }
 
@@ -161,8 +168,10 @@ public class InputBookListActivity extends AppCompatActivity {
 
             if (msg.what == 0) {
                 System.out.println("111");
+
                 Bitmap bmp = (Bitmap) msg.obj;
                 System.out.println("000");
+
                 imageTop.setImageBitmap(bmp);
                 setCondition(1);
             }
@@ -172,16 +181,15 @@ public class InputBookListActivity extends AppCompatActivity {
     public Bitmap getURLImage(String url) {
         Bitmap bmp = null;
         try {
-            URL myUrl = new URL(url);
-            // 获得连接
+            URL myUrl = new URL(url);   // 获得连接
             HttpURLConnection conn = (HttpURLConnection) myUrl.openConnection();
-            conn.setConnectTimeout(6000);//设置超时
+            conn.setConnectTimeout(6000);   // 设置超时
             conn.setDoInput(true);
-            conn.setUseCaches(false);//不缓存
+            conn.setUseCaches(false);   // 不缓存
             conn.connect();
 
-            InputStream is = conn.getInputStream();//获得图片的数据流
-            bmp = BitmapFactory.decodeStream(is);//读取图像数据
+            InputStream is = conn.getInputStream(); // 获得图片的数据流
+            bmp = BitmapFactory.decodeStream(is);   // 读取图像数据
             //读取文本数据
             //byte[] buffer = new byte[100];
             //inputStream.read(buffer);
