@@ -19,8 +19,8 @@
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="141dp"
-            android:layout_height="200dp"
+            android:layout_width="120dp"
+            android:layout_height="180dp"
             android:contentDescription="@string/todo" />
 
         <TextView
@@ -35,7 +35,7 @@
             android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/textRank"
+            android:id="@+id/textAuthor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/textView"
@@ -47,10 +47,10 @@
             android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/textAuthor"
+            android:id="@+id/textRank"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/textRank"
+            android:layout_below="@id/textAuthor"
             android:layout_marginStart="5dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="5dp"
@@ -62,14 +62,13 @@
             android:id="@+id/textYear"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/textAuthor"
+            android:layout_below="@id/textRank"
             android:layout_marginStart="5dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="5dp"
             android:layout_marginBottom="5dp"
             android:layout_toEndOf="@id/imageView"
             android:textSize="18sp" />
-
 
     </RelativeLayout>
 
