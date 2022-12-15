@@ -1,9 +1,9 @@
 <resources>
-    <string name="app_name">BookLibrary</string>
-    <string name="confirmation">confirmation</string>
-    <string name="sure_to_delete">Are you sure to delete?</string>
-    <string name="yes">Yes</string>
-    <string name="no">No</string>
+    <string name="app_name">个人图书馆</string>
+    <string name="confirmation">确认</string>
+    <string name="sure_to_delete">确定要删除吗？</string>
+    <string name="yes">是</string>
+    <string name="no">否</string>
     <string name="name">Name</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="book_list">BookList</string>
@@ -14,7 +14,7 @@
     <string name="Collect">收藏</string>
     <string name="Share">分享</string>
     <string name="Fontsize">字号</string>
-    <string name="ok">Ok</string>
+    <string name="ok">OK</string>
     <string name="Spinner_menu">下拉菜单</string>
     <string name="book_name">名称</string>
     <string name="book_name_input">请输入作品名称</string>
@@ -30,5 +30,10 @@
     <string name="book_isbn_input">请输入作品ISBN编号</string>
     <string name="book_url">封面URL</string>
     <string name="book_url_input">请输入作品封面URL</string>
+    <string name="book_name_display">名称：</string>
+    <string name="book_author_display">作者：</string>
+    <string name="book_press_display">出版社：</string>
+    <string name="book_year_display">出版年份：</string>
+    <string name="book_isbn_display">ISBN：</string>
 
 </resources>

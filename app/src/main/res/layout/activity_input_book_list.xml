@@ -21,9 +21,6 @@
             android:id="@+id/cardViewImageUrl"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="top|end"
-            android:foreground="?android:attr/selectableItemBackground"
-            app:cardBackgroundColor="@color/teal_700"
             app:cardCornerRadius="8dp"
             app:cardElevation="8dp"
             app:cardMaxElevation="10dp"
@@ -261,7 +258,7 @@
 
         <Button
             android:id="@+id/button_ok"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/ok">
 

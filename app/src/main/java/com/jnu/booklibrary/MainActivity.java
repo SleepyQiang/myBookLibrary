@@ -3,6 +3,7 @@ package com.jnu.booklibrary;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -12,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,6 +24,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -36,7 +39,6 @@ import java.util.List;
 import com.jnu.booklibrary.data.Book;
 import com.jnu.booklibrary.data.DataSaver;
 import com.jnu.booklibrary.dialog.MyDialog;
-import com.jnu.booklibrary.InputBookListActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -50,8 +52,11 @@ public class MainActivity extends AppCompatActivity {
     private TextView myDrawerText;
     private FloatingActionButton myFab;
     private Spinner mySpinner;
+    private SearchView mySearchView;
+    private ListView myListView;
     private ArrayList<String> mySpinnerList;
     private ArrayAdapter<String> mySpinnerAdapter;
+    private String[] myStrs = {"家", "春", "秋"};
 
     ArrayList<Book> myBookList = new ArrayList<>();
     public static final int MENU_ID_ADD = 1;
@@ -76,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
 
                 String name = bundle.getString("name");
                 int position = bundle.getInt("position");
-                myBookList.add(position,new Book(name,R.drawable.wa,"莫言","浙江文艺出版社","2017-1-1","8.9","9787533946661"));
+                myBookList.add(position, new Book(name, R.drawable.wa, "莫言", "浙江文艺出版社", "2017-1-1", "8.9", "9787533946661"));
 
                 new DataSaver().Save(this, myBookList);
                 myMyAdapter.notifyItemInserted(position);
@@ -121,18 +126,19 @@ public class MainActivity extends AppCompatActivity {
 
         myRecyclerView = this.findViewById(R.id.recyclerview);
 
+//        实现左上角菜单图标打开drawer，存在bug
 //        Objects.requireNonNull(getSupportActionBar()).setHomeButtonEnabled(true);
 //        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 //
 //        myToolbar = findViewById(R.id.toolbar);
 //        setSupportActionBar(myToolbar);
+
+//        myToggle = new ActionBarDrawerToggle(this, myDrawerLayout, myToolbar, R.string.welcome_to_drawer, R.string.sure_to_delete);
+//        myToggle.syncState();
+
         myDrawerLayout = findViewById(R.id.drawer_main);
         myDrawerText = findViewById(R.id.drawer_text);
         myLinearLayout = findViewById(R.id.drawer_left);
-
-//        实现左上角菜单图标打开drawer，存在bug
-//        myToggle = new ActionBarDrawerToggle(this, myDrawerLayout, myToolbar, R.string.welcome_to_drawer, R.string.sure_to_delete);
-//        myToggle.syncState();
 
         myDrawerLayout.addDrawerListener(new DrawerLayout.DrawerListener() {
 
@@ -159,9 +165,33 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//        myFab = findViewById(R.id.floatingActionButton);
-//        Drawable myDrawable = getDrawable(R.drawable.ic_baseline_add_24);
-//        myFab.setImageDrawable(myDrawable);
+        mySearchView = findViewById(R.id.SearchView);
+        myListView = findViewById(R.id.ListView);
+        myListView.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, myStrs));
+        myListView.setTextFilterEnabled(true);
+
+        // 设置搜索文本监听
+        mySearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            // 当点击搜索按钮时触发该方法
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+
+                return false;
+            }
+
+            // 当搜索内容改变时触发该方法
+            @Override
+            public boolean onQueryTextChange(String newText) {  // 此方法的作用是对搜索框里的文字实时监听。
+
+                if (!TextUtils.isEmpty(newText)) {
+                    myListView.setFilterText(newText);
+                } else {
+                    myListView.clearTextFilter();
+                }
+
+                return false;
+            }
+        });
 
         Book b0 = new Book("家", R.drawable.jia, "巴金", "人民文学出版社", "2013-6-1", "8.3", "9787020096466");
         Book b1 = new Book("春", R.drawable.chun, "巴金", "人民文学出版社", "2013-6-1", "8.3", "9787020096473");
@@ -218,8 +248,8 @@ public class MainActivity extends AppCompatActivity {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         myRecyclerView.setLayoutManager(layoutManager); // RecycleView implementation
 
-        FloatingActionButton fab = findViewById(R.id.floatingActionButton);
-        fab.setOnClickListener(new View.OnClickListener() {
+        myFab = findViewById(R.id.floatingActionButton);
+        myFab.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
@@ -240,6 +270,7 @@ public class MainActivity extends AppCompatActivity {
     public void showBookInfo(Book book) {
 
         MyDialog myDialog = new MyDialog(MainActivity.this, book);
+
         myDialog.show();
     }
 

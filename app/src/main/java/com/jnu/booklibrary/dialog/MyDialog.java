@@ -24,14 +24,12 @@ public class MyDialog extends Dialog {
         TextView textYear_d = view.findViewById(R.id.textYear_d);
         TextView textIsbn_d = view.findViewById(R.id.textIsbn_d);
 
-        textTitle_d.setText("Title: " + book.getTitle());
-        textAuthor_d.setText("Author: " + book.getAuthor());
-        textPress_d.setText("Press: " + book.getPress());
-        textYear_d.setText("Year: " + book.getYear());
-        textIsbn_d.setText("ISBN: " + book.getIsbn());
+        textTitle_d.setText(context.getString(R.string.book_name_display) + book.getTitle());
+        textAuthor_d.setText(context.getString(R.string.book_author_display) + book.getAuthor());
+        textPress_d.setText(context.getString(R.string.book_press_display) + book.getPress());
+        textYear_d.setText(context.getString(R.string.book_year_display) + book.getYear());
+        textIsbn_d.setText(context.getString(R.string.book_isbn_display) + book.getIsbn());
 
         setContentView(view);
     }
-
-
 }

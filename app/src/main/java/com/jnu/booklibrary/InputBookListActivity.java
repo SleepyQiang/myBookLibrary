@@ -64,6 +64,7 @@ public class InputBookListActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 url = editImageUrl.getText().toString();
+
                 if (url.length() != 0) {
                     new Thread(new Runnable() {
                         @Override
@@ -115,21 +116,21 @@ public class InputBookListActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                    Intent intent = new Intent();
-                    Bundle bundle = new Bundle();
+                Intent intent = new Intent();
+                Bundle bundle = new Bundle();
 
-                    bundle.putInt("position", position);
-                    bundle.putByteArray("cover", coverByte);
-                    bundle.putString("title", editTitle.getText().toString());
-                    bundle.putString("author", editAuthor.getText().toString());
-                    bundle.putString("rank", editRank.getText().toString());
-                    bundle.putString("year", editYear.getText().toString());
-                    bundle.putString("press", editPress.getText().toString());
-                    bundle.putString("isbn", editIsbn.getText().toString());
+                bundle.putInt("position", position);
+                bundle.putByteArray("cover", coverByte);
+                bundle.putString("title", editTitle.getText().toString());
+                bundle.putString("author", editAuthor.getText().toString());
+                bundle.putString("rank", editRank.getText().toString());
+                bundle.putString("year", editYear.getText().toString());
+                bundle.putString("press", editPress.getText().toString());
+                bundle.putString("isbn", editIsbn.getText().toString());
 
-                    intent.putExtras(bundle);
-                    setResult(RESULT_CODE, intent);
-                    InputBookListActivity.this.finish();
+                intent.putExtras(bundle);
+                setResult(RESULT_CODE, intent);
+                InputBookListActivity.this.finish();
             }
         });
     }
@@ -156,8 +157,7 @@ public class InputBookListActivity extends AppCompatActivity {
 
         if (b.length != 0) {
             return BitmapFactory.decodeByteArray(b, 0, b.length);
-        }
-        else {
+        } else {
             return null;
         }
     }
@@ -190,10 +190,6 @@ public class InputBookListActivity extends AppCompatActivity {
 
             InputStream is = conn.getInputStream(); // 获得图片的数据流
             bmp = BitmapFactory.decodeStream(is);   // 读取图像数据
-            //读取文本数据
-            //byte[] buffer = new byte[100];
-            //inputStream.read(buffer);
-            //text = new String(buffer);
             is.close();
         } catch (Exception e) {
             e.printStackTrace();
