@@ -179,17 +179,19 @@ public class InputBookListActivity extends AppCompatActivity {
     };
 
     public Bitmap getURLImage(String url) {
+
         Bitmap bmp = null;
+
         try {
-            URL myUrl = new URL(url);   // 获得连接
+            URL myUrl = new URL(url);
             HttpURLConnection conn = (HttpURLConnection) myUrl.openConnection();
-            conn.setConnectTimeout(6000);   // 设置超时
+            conn.setConnectTimeout(6000);
             conn.setDoInput(true);
-            conn.setUseCaches(false);   // 不缓存
+            conn.setUseCaches(false);
             conn.connect();
 
-            InputStream is = conn.getInputStream(); // 获得图片的数据流
-            bmp = BitmapFactory.decodeStream(is);   // 读取图像数据
+            InputStream is = conn.getInputStream();
+            bmp = BitmapFactory.decodeStream(is);
             is.close();
         } catch (Exception e) {
             e.printStackTrace();
