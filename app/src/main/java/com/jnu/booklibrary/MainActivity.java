@@ -80,9 +80,14 @@ public class MainActivity extends AppCompatActivity {
                 Bundle bundle = intent.getExtras();
 
                 String name = bundle.getString("name");
+                String author = bundle.getString("author");
+                String rank = bundle.getString("rank");
+                String year = bundle.getString("year");
+                String press = bundle.getString("press");
+                String isbn = bundle.getString("isbn");
                 int position = bundle.getInt("position");
-                myBookList.add(position, new Book(name, R.drawable.wa, "莫言", "浙江文艺出版社", "2017-1-1", "8.9", "9787533946661"));
 
+                myBookList.add(position, new Book(name, R.drawable.wa, author, press, year, rank, isbn));
                 new DataSaver().Save(this, myBookList);
                 myMyAdapter.notifyItemInserted(position);
             }
@@ -98,9 +103,19 @@ public class MainActivity extends AppCompatActivity {
                 Bundle bundle = intent.getExtras();
 
                 String name = bundle.getString("name");
+                String author = bundle.getString("author");
+                String rank = bundle.getString("rank");
+                String year = bundle.getString("year");
+                String press = bundle.getString("press");
+                String isbn = bundle.getString("isbn");
                 int position = bundle.getInt("position");
-                myBookList.get(position).setTitle(name);
 
+                myBookList.get(position).setTitle(name);
+                myBookList.get(position).setAuthor(author);
+                myBookList.get(position).setRank(rank);
+                myBookList.get(position).setYear(year);
+                myBookList.get(position).setPress(press);
+                myBookList.get(position).setIsbn(isbn);
                 new DataSaver().Save(this, myBookList);
                 myMyAdapter.notifyItemChanged(position);
             }
